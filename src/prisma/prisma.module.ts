@@ -1,13 +1,10 @@
-import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+ import { Module } from '@nestjs/common';
+import { PrismaService } from './prisma.service';
 
-@Injectable()
-export class PrismaService extends PrismaClient implements OnModuleDestroy {
-  constructor() {
-    super();
-  }
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService], // Exporta o PrismaService para que outros módulos possam usá-lo
+})
+export class PrismaModule {}
 
-  onModuleDestroy() {
-    this.$disconnect();
-  }
-}
+export { PrismaService };
