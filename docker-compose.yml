@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:13
+    container_name: restaurant-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: restaurant
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge
