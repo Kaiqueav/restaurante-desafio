@@ -17,25 +17,30 @@ model product {
   name String
   description String
   price Float
-}
-
-model Client {
-  id        Int    @id @default(autoincrement())
-  name      String
-  birthday  DateTime
-  whatsapp  String
-  address   String
-
-  Order Order[]
+  type ProdutoTipo
 }
 
 model Order {
   id             Int       @id @default(autoincrement())
   clientId       Int
-  client       Client  @relation(fields: [clientId], references: [id])
+  client         String
   date           DateTime
   orderNumber    String
-  deliveryMethod String
-  paymentMethod  String
-  deliveryConfirmed Boolean
+  deliveryMethod DeliveryMethod
+  paymentMethod  PaymentMethod
+  deliveryConfirmed Boolean @default(false)
+}
+enum ProdutoTipo {
+  MARMITA_COMPLETA
+  MARMITA_REFRI
+  MARMITA_SUCO
+}
+enum DeliveryMethod {
+  DELIVERY
+  RETIRADA
+}
+enum  PaymentMethod {
+  PIX
+  DINHEIRO
+  CARTAO
 }
