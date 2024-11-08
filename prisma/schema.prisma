@@ -13,11 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model product {
-  id Int @id @default(autoincrement())
-  name String
-  description String
-  price Float
-  type ProdutoTipo
+    id Int @id @default(autoincrement())
+    name String
+    description String
+    price Float
+    type ProdutoTipo
 }
 
 model Order {

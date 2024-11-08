@@ -22,7 +22,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   async cleanDatabase() {
     await this.$transaction([
       this.order.deleteMany(),
-      this.client.deleteMany(),
       this.product.deleteMany(),
     ]);
   }
